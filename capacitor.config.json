@@ -1,0 +1,8 @@
+{
+  "appId": "com.inventarisation",
+  "appName": "inventarisation",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

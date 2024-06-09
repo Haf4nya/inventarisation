@@ -1,0 +1,7 @@
+{
+  "name": "inventarisation",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
