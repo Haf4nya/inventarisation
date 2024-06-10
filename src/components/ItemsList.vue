@@ -86,7 +86,6 @@ import searchField from "@/components/SearchField.vue";
 import filterList from "@/components/FilterList.vue";
 import CreateItem from "@/components/CreateItem.vue";
 import DeleteItem from "@/components/DeleteItem.vue";
-import axios from "axios";
 import { ref } from "vue";
 
 const items = ref([]);
@@ -157,31 +156,23 @@ const downloadPdf = async () => {
   try {
     const selectedIds = selected.value;
 
-    // Assuming the Axios request is meant to trigger something on the server
-    // that eventually leads to the PDF being available for download.
-    // Note: The responseType should match what the server returns.
-    const axiosResponse = await axios.post(
-      "http://localhost:8000/download",
-      {
-        ids: selectedIds,
+    const resp = await fetch(`http://127.0.0.1:8000/download`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      { responseType: "blob" }
-    ); // Adjusted responseType to "blob"
+      body: JSON.stringify({ ids: selectedIds }),
+    });
 
-    // Now, assuming the PDF is returned as a Blob from the server
-    // and we proceed to convert it to base64 for download.
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      const base64String = event.target.result.split(",")[1]; // Correctly extracting base64 part
+    const base64string = await resp.text();
 
-      const downloadLink = document.createElement("a");
-      downloadLink.href = `data:application/pdf;base64,${base64String}`;
-      downloadLink.download = "filename.pdf";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    };
-    reader.readAsDataURL(axiosResponse.data); // Using the Blob from the Axios response
+    const downloadLink = document.createElement("a");
+    const fileName = `${"Файл"}.pdf`;
+
+    downloadLink.href = `data:application/pdf;base64,${base64string}`;
+    console.log(downloadLink.href);
+    downloadLink.download = fileName;
+    downloadLink.click();
   } catch (error) {
     console.error("Error fetching or processing the PDF:", error);
   }
