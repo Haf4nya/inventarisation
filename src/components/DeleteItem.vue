@@ -28,7 +28,7 @@ const closeDelete = () => {
 };
 
 const deleteItemConfirm = (id) => {
-  fetch(`http://localhost:8000/deleteItem?id=${id}`)
+  fetch(`http://91.107.125.203:8000/deleteItem?id=${id}`)
     .then(() => {
       emit("successDelete", true);
       closeDelete();

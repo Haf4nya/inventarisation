@@ -117,7 +117,7 @@ const headers = [
 
 const load = () => {
   fetch(
-    `http://localhost:8000/listItems?${
+    `http://91.107.125.203:8000/listItems?${
       searchQuery.value
         ? "searchQuery=" + searchQuery.value
         : filter.value
@@ -156,7 +156,7 @@ const downloadPdf = async () => {
   try {
     const selectedIds = selected.value;
 
-    const resp = await fetch(`http://127.0.0.1:8000/download`, {
+    const resp = await fetch(`http://91.107.125.203:8000/download`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

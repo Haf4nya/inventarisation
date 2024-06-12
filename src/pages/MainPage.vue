@@ -6,13 +6,6 @@
 
 <script setup>
 import itemsList from "@/components/ItemsList.vue";
-// import { useRouter } from "vue-router";
-
-// const router = useRouter();
-
-// const onCreate = () => {
-//   router.push({ name: "createItem", params: { id: 0 } });
-// };
 </script>
 
 <style></style>

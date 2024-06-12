@@ -110,7 +110,7 @@ const closeDialog = () => {
 
 const saveRecord = () => {
   console.log(record.value);
-  fetch(`http://127.0.0.1:8000/${record.value.id ? "update" : "create"}`, {
+  fetch(`http://91.107.125.203:8000/${record.value.id ? "update" : "create"}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -127,7 +127,7 @@ const saveRecord = () => {
 };
 
 const load = async (id) => {
-  const result = await fetch(`http://localhost:8000/item?id=${id}`);
+  const result = await fetch(`http://91.107.125.203:8000/item?id=${id}`);
   record.value = await result.json();
 };
 
